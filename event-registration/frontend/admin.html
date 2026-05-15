@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel — TechFest 2025</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="admin-body">
+
+  <!-- Admin Navbar -->
+  <nav class="navbar admin-nav">
+    <div class="nav-brand">
+      <span class="brand-dot admin-dot"></span>
+      Admin<span class="brand-year">Panel</span>
+    </div>
+    <a href="index.html" class="nav-admin-btn">← Back to Site</a>
+  </nav>
+
+  <!-- Admin Header -->
+  <div class="admin-header">
+    <div class="container">
+      <h1 class="admin-title">Registrations Dashboard</h1>
+      <p class="admin-subtitle">Manage all event registrations in one place.</p>
+    </div>
+  </div>
+
+  <!-- Stats Bar -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num" id="totalCount">—</div>
+          <div class="stat-label">Total Registrations</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="aiCount">—</div>
+          <div class="stat-label">AI &amp; ML Summit</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="cloudCount">—</div>
+          <div class="stat-label">Cloud &amp; DevOps</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="cyberCount">—</div>
+          <div class="stat-label">CyberSecurity</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Admin Content -->
+  <main class="admin-main">
+    <div class="container">
+
+      <!-- Controls -->
+      <div class="admin-controls">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Search by name, email or event…" oninput="filterTable()" />
+        </div>
+        <button class="refresh-btn" onclick="loadRegistrations()">↻ Refresh</button>
+      </div>
+
+      <!-- Loading State -->
+      <div class="admin-loading" id="adminLoading">
+        <div class="spinner"></div>
+        <p>Loading registrations…</p>
+      </div>
+
+      <!-- Error State -->
+      <div class="admin-error hidden" id="adminError">
+        <p>⚠️ Could not load registrations. Make sure the backend server is running.</p>
+        <button onclick="loadRegistrations()">Try Again</button>
+      </div>
+
+      <!-- Empty State -->
+      <div class="admin-empty hidden" id="adminEmpty">
+        <p>📭 No registrations yet. Share the event page to get started!</p>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrapper hidden" id="tableWrapper">
+        <table class="reg-table" id="regTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Event</th>
+              <th>Registered On</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Delete Confirm Modal -->
+  <div class="modal-overlay hidden" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-icon">🗑️</div>
+      <h3>Delete Registration?</h3>
+      <p>This action cannot be undone. The user will need to re-register.</p>
+      <div class="modal-actions">
+        <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+        <button class="modal-confirm" id="modalConfirmBtn">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
