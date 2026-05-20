@@ -11,7 +11,7 @@ Join workshops, conferences, and networking sessions with ease using TECHFEST 20
 
 ---
 
-# 📡 Endpoints
+#  Endpoints
 
 ## Registration Routes
 
